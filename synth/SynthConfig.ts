@@ -246,6 +246,8 @@ export class Config {
 		{name: "A",  isWhiteKey:  true, basePitch: 21},
 		{name: "A♯", isWhiteKey: false, basePitch: 22},
 		{name: "B",  isWhiteKey:  true, basePitch: 23},
+		{name: "B♯",  isWhiteKey:  false, basePitch: 24},
+		{name: "C1",  isWhiteKey:  false, basePitch: 25},
 	]);
 	public static readonly blackKeyNameParents: ReadonlyArray<number> = [-1, 1, -1, 1, -1, 1, -1, -1, 1, -1, 1, -1];
 	public static readonly tempoMin: number = 1;
@@ -261,11 +263,11 @@ export class Config {
 	public static readonly reverbDelayBufferSize: number = 16384; // TODO: Compute a buffer size based on sample rate.
 	public static readonly reverbDelayBufferMask: number = Config.reverbDelayBufferSize - 1; // TODO: Compute a buffer size based on sample rate.
 	public static readonly beatsPerBarMin: number = 3;
-	public static readonly beatsPerBarMax: number = 16;
+	public static readonly beatsPerBarMax: number = 100;
 	public static readonly barCountMin: number = 1;
-	public static readonly barCountMax: number = 128;
+	public static readonly barCountMax: number = 97104;
 	public static readonly instrumentCountMin: number = 1;
-	public static readonly layeredInstrumentCountMax: number = 4;
+	public static readonly layeredInstrumentCountMax: number = 16;
 	public static readonly patternInstrumentCountMax: number = 10;
 	public static readonly partsPerBeat: number = 24;
 	public static readonly ticksPerPart: number = 2;
@@ -296,8 +298,8 @@ export class Config {
 		{name: "rounded",      expression: 0.94, samples: centerWave([0.0, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.95, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.95, 0.9, 0.85, 0.8, 0.7, 0.6, 0.5, 0.4, 0.2, 0.0, -0.2, -0.4, -0.5, -0.6, -0.7, -0.8, -0.85, -0.9, -0.95, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -0.95, -0.9, -0.85, -0.8, -0.7, -0.6, -0.5, -0.4, -0.2])},
 		{name: "triangle",     expression: 1.0,  samples: centerWave([1.0/15.0, 3.0/15.0, 5.0/15.0, 7.0/15.0, 9.0/15.0, 11.0/15.0, 13.0/15.0, 15.0/15.0, 15.0/15.0, 13.0/15.0, 11.0/15.0, 9.0/15.0, 7.0/15.0, 5.0/15.0, 3.0/15.0, 1.0/15.0, -1.0/15.0, -3.0/15.0, -5.0/15.0, -7.0/15.0, -9.0/15.0, -11.0/15.0, -13.0/15.0, -15.0/15.0, -15.0/15.0, -13.0/15.0, -11.0/15.0, -9.0/15.0, -7.0/15.0, -5.0/15.0, -3.0/15.0, -1.0/15.0])},
 		{name: "square",       expression: 0.5,  samples: centerWave([1.0, -1.0])},
-		{name: "1/4 pulse",    expression: 0.5,  samples: centerWave([1.0, -1.0, -1.0, -1.0])},
-		{name: "1/8 pulse",    expression: 0.5,  samples: centerWave([1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0])},
+		{name: "0.25 pulse",    expression: 0.5,  samples: centerWave([1.0, -1.0, -1.0, -1.0])},
+		{name: "0.125 pulse",    expression: 0.5,  samples: centerWave([1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0])},
 		{name: "sawtooth",     expression: 0.65, samples: centerWave([1.0/31.0, 3.0/31.0, 5.0/31.0, 7.0/31.0, 9.0/31.0, 11.0/31.0, 13.0/31.0, 15.0/31.0, 17.0/31.0, 19.0/31.0, 21.0/31.0, 23.0/31.0, 25.0/31.0, 27.0/31.0, 29.0/31.0, 31.0/31.0, -31.0/31.0, -29.0/31.0, -27.0/31.0, -25.0/31.0, -23.0/31.0, -21.0/31.0, -19.0/31.0, -17.0/31.0, -15.0/31.0, -13.0/31.0, -11.0/31.0, -9.0/31.0, -7.0/31.0, -5.0/31.0, -3.0/31.0, -1.0/31.0])},
 		{name: "double saw",   expression: 0.5,  samples: centerWave([0.0, -0.2, -0.4, -0.6, -0.8, -1.0, 1.0, -0.8, -0.6, -0.4, -0.2, 1.0, 0.8, 0.6, 0.4, 0.2])},
 		{name: "double pulse", expression: 0.4,  samples: centerWave([1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0])},
@@ -335,6 +337,7 @@ export class Config {
 		{name: "continue",      isSeamless: true,  continues: true,  slides: false, slideTicks: 3, includeAdjacentPatterns: true},
 		{name: "slide",         isSeamless: true,  continues: false, slides: true,  slideTicks: 3, includeAdjacentPatterns: true},
 		{name: "slide in pattern", isSeamless: true,  continues: false, slides: true,  slideTicks: 3, includeAdjacentPatterns: false},
+		{name: "continuing slide in pattern", isSeamless: true,  continues: true, slides: true,  slideTicks: 3, includeAdjacentPatterns: true},
 	]);
 	public static readonly vibratos: DictionaryArray<Vibrato> = toNameMap([
 		{name: "none",    amplitude: 0.0,  periodsSeconds: [0.14], delayTicks: 0},
@@ -421,6 +424,11 @@ export class Config {
 		{name: "30×", mult: 30.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name: "35×", mult: 35.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name: "45×", mult: 45.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "50×", mult: 50.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "100×", mult: 100.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "1000×", mult: 1000.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "10000×", mult: 10000.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "97104×", mult: 97104.0, hzOffset: 0.0, amplitudeSign: 1.0},
 	]);
 	public static readonly envelopes: DictionaryArray<Envelope> = toNameMap([
 		{name: "none",     type: EnvelopeType.none,     speed:  0.0},
