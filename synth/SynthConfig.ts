@@ -79,7 +79,7 @@ export const enum EffectType {
 	vibrato,
 	transition,
 	chord,
-	// If you add more, you'll also have to extend the bitfield used in Base64 which currently uses two six-bit characters.
+        demolish, 
 	length,
 }
 
@@ -352,6 +352,8 @@ export class Config {
 		{name: "octave",     voices: 2, spread: 6.0,  offset: 6.0, expression: 0.8, sign: 1.0},
 		{name: "bowed",      voices: 2, spread: 0.02, offset: 0.0, expression: 1.0, sign:-1.0},
 		{name: "piano",      voices: 2, spread: 0.01, offset: 0.0, expression: 1.0, sign: 0.7},
+                {name: "50's guitar",voices: 5, spread: 2.34, offset: 1.1, expression: 0.8, sign: 0.89},
+
 	]);
 	public static readonly effectNames: ReadonlyArray<string> = ["reverb", "chorus", "panning", "distortion", "bitcrusher", "note filter", "echo", "pitch shift", "detune", "vibrato", "transition type", "chord type"];
 	public static readonly effectOrder: ReadonlyArray<EffectType> = [EffectType.transition, EffectType.chord, EffectType.pitchShift, EffectType.detune, EffectType.vibrato, EffectType.noteFilter, EffectType.distortion, EffectType.bitcrusher, EffectType.panning, EffectType.chorus, EffectType.echo, EffectType.reverb];
@@ -473,9 +475,9 @@ export class Config {
 	public static readonly supersawSpreadMax: number = 12;
 	public static readonly supersawShapeMax: number = 6;
 	public static readonly pitchChannelCountMin: number = 1;
-	public static readonly pitchChannelCountMax: number = 10;
+	public static readonly pitchChannelCountMax: number = 50;
 	public static readonly noiseChannelCountMin: number = 0;
-	public static readonly noiseChannelCountMax: number = 5;
+	public static readonly noiseChannelCountMax: number = 50;
 	public static readonly noiseInterval: number = 6;
 	public static readonly pitchesPerOctave: number = 12; // TODO: Use this for converting pitch to frequency.
 	public static readonly drumCount: number = 12;
@@ -503,6 +505,9 @@ export class Config {
 	public static readonly pickedStringDispersionFreqScale: number = 0.3; // The tone fundamental freq freq moves this much toward the center freq for computing the all-pass corner freq.
 	public static readonly pickedStringDispersionFreqMult: number = 4.0; // The all-pass corner freq is based on this times the adjusted tone fundamental freq.
 	public static readonly pickedStringShelfHz: number = 4000.0; // The cutoff freq of the shelf filter that is used to decay the high frequency energy in the picked string.
+	public static readonly demolishDispersionCenterFreq number = 0.03375;
+	public static readonly demolishDispersionFreqScale number = 0.1;
+        public static readonly demolishDispersionFreqMult number = 2.0;
 	public static readonly stringSustainRange: number = 15;
 	public static readonly stringDecayRate: number = 0.12;
 	public static readonly enableAcousticSustain: boolean = false;
