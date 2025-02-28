@@ -12,7 +12,7 @@ export class SongRecoveryPrompt implements Prompt {
 	private readonly _cancelButton: HTMLButtonElement = button({class: "cancelButton"});
 	
 	public readonly container: HTMLDivElement = div({class: "prompt", style: "width: 300px;"},
-		h2("Song Recovery"),
+		h2("Songs"),
 		div({style: "max-height: 385px; overflow-y: auto;"},
 			p("This is a TEMPORARY list of songs you have recently modified. Please keep your own backups of songs you care about!"),
 			this._songContainer,
