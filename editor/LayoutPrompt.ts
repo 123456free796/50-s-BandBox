@@ -48,6 +48,17 @@ export class LayoutPrompt implements Prompt {
 					</svg>
 				`),
 				div("Tall"),
+	          label({class: "layout-option"},
+				input({type: "radio", name: "layout", value: "tall"}),
+				SVG(`\
+					<svg viewBox="-1 -1 28 22">
+						<rect x="0" y="1" width="26" height="20" fill="none" stroke="currentColor" stroke-width="1"/>
+						<rect x="11" y="2" width="8" height="19" fill="currentColor"/>
+						<rect x="20" y="2" width="4" height="19" fill="currentColor"/>
+						<rect x="2" y="2" width="8" height="19" fill="currentColor"/>
+					</svg>
+				`),
+				div("Wide (expert)"),
 			),
 		);
 	
