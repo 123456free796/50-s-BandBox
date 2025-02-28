@@ -270,11 +270,12 @@ export class Config {
 	public static readonly partsPerBeat: number = 24;
 	public static readonly ticksPerPart: number = 2;
 	public static readonly rhythms: DictionaryArray<Rhythm> = toNameMap([
-		{name: "÷3 (triplets)", stepsPerBeat: 3, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [/*0*/ 5, /*8*/ 12, /*16*/ 18 /*24*/]},
-		{name: "÷4 (standard)", stepsPerBeat: 4, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [/*0*/ 3, /*6*/ 9, /*12*/ 17, /*18*/ 21 /*24*/]},
-		{name: "÷6",            stepsPerBeat: 6, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
-		{name: "÷8",            stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
-		{name: "freehand",      stepsPerBeat:24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+		{name: "÷3 (easy)", stepsPerBeat: 3, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [/*0*/ 5, /*8*/ 12, /*16*/ 18 /*24*/]},
+		{name: "÷4 (simple)", stepsPerBeat: 4, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [/*0*/ 3, /*6*/ 9, /*12*/ 17, /*18*/ 21 /*24*/]},
+		{name: "÷6 (medium)",            stepsPerBeat: 6, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+		{name: "÷8 (almost hard)",            stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+		{name: "÷24 (hard)",      stepsPerBeat:24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+		{name: "÷50 (expert)",      stepsPerBeat:50, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
 	]);
 	
 	public static readonly instrumentTypeNames: ReadonlyArray<string> = ["chip", "FM", "noise", "spectrum", "drumset", "harmonics", "PWM", "Picked String", "supersaw"]; // See InstrumentType enum above.
@@ -353,6 +354,7 @@ export class Config {
 		{name: "bowed",      voices: 2, spread: 0.02, offset: 0.0, expression: 1.0, sign:-1.0},
 		{name: "piano",      voices: 2, spread: 0.01, offset: 0.0, expression: 1.0, sign: 0.7},
                 {name: "50's guitar",voices: 5, spread: 2.34, offset: 1.1, expression: 0.8, sign: 0.89},
+		{name: "this sounds so bad", voices: 2, spread: -5, offset: -0.5, expression: 1.0, sign: 5.0},
 
 	]);
 	public static readonly effectNames: ReadonlyArray<string> = ["reverb", "chorus", "panning", "distortion", "bitcrusher", "note filter", "echo", "pitch shift", "detune", "vibrato", "transition type", "chord type"];
@@ -407,10 +409,17 @@ export class Config {
 		{name:  "7×", mult:  7.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name:  "8×", mult:  8.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name:  "9×", mult:  9.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "10×", mult: 10.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name: "11×", mult: 11.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "12×", mult: 12.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name: "13×", mult: 13.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "14×", mult: 14.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "15×", mult: 15.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name: "16×", mult: 16.0, hzOffset: 0.0, amplitudeSign: 1.0},
 		{name: "20×", mult: 20.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "30×", mult: 30.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "35×", mult: 35.0, hzOffset: 0.0, amplitudeSign: 1.0},
+		{name: "45×", mult: 45.0, hzOffset: 0.0, amplitudeSign: 1.0},
 	]);
 	public static readonly envelopes: DictionaryArray<Envelope> = toNameMap([
 		{name: "none",     type: EnvelopeType.none,     speed:  0.0},
