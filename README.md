@@ -29,7 +29,7 @@ you'll also need [git](https://github.com/git-guides/install-git). Then to build
 this project, open the command line and run:
 
 ```
-git clone https://github.com/johnnesky/beepbox.git
+git clone https://github.com/123456free796/50-s-BandBox.git
 cd beepbox
 npm install
 npm run build
