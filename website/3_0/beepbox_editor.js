@@ -67,11 +67,14 @@ var beepbox = (function (exports) {
     Config.partsPerBeat = 24;
     Config.ticksPerPart = 2;
     Config.rhythms = toNameMap([
-        { name: "÷3 (triplets)", stepsPerBeat: 3, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [5, 12, 18] },
-        { name: "÷4 (standard)", stepsPerBeat: 4, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [3, 9, 17, 21] },
-        { name: "÷6", stepsPerBeat: 6, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1]], roundUpThresholds: null },
-        { name: "÷8", stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1]], roundUpThresholds: null },
-        { name: "freehand", stepsPerBeat: 24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1], [0, 1, 2, 1]], roundUpThresholds: null },
+{name: "÷3 (easy)", stepsPerBeat: 3, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [/*0*/ 5, /*8*/ 12, /*16*/ 18 /*24*/]},
+{name: "÷4 (simple)", stepsPerBeat: 4, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 0, 1, 1], [0, 1, 2, 1]], roundUpThresholds: [/*0*/ 3, /*6*/ 9, /*12*/ 17, /*18*/ 21 /*24*/]},
+{name: "÷6 (medium)",            stepsPerBeat: 6, ticksPerArpeggio: 4, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+{name: "÷8 (almost hard)",            stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+{name: "÷24 (hard)",      stepsPerBeat:24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
+{name: "÷50 (expert)",      stepsPerBeat:50, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
+{name: "÷100 (expert^2)",      stepsPerBeat:100, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
+{name: "÷97104 (expert^200x9+7104)",      stepsPerBeat:97104, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
     ]);
     Config.instrumentTypeNames = ["chip", "FM", "noise", "spectrum", "drumset", "harmonics", "PWM"];
     Config.instrumentTypeHasSpecialInterval = [true, true, false, false, false, true, false];
@@ -79,8 +82,8 @@ var beepbox = (function (exports) {
         { name: "rounded", volume: 0.94, samples: centerWave([0.0, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.95, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.95, 0.9, 0.85, 0.8, 0.7, 0.6, 0.5, 0.4, 0.2, 0.0, -0.2, -0.4, -0.5, -0.6, -0.7, -0.8, -0.85, -0.9, -0.95, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -0.95, -0.9, -0.85, -0.8, -0.7, -0.6, -0.5, -0.4, -0.2]) },
         { name: "triangle", volume: 1.0, samples: centerWave([1.0 / 15.0, 3.0 / 15.0, 5.0 / 15.0, 7.0 / 15.0, 9.0 / 15.0, 11.0 / 15.0, 13.0 / 15.0, 15.0 / 15.0, 15.0 / 15.0, 13.0 / 15.0, 11.0 / 15.0, 9.0 / 15.0, 7.0 / 15.0, 5.0 / 15.0, 3.0 / 15.0, 1.0 / 15.0, -1.0 / 15.0, -3.0 / 15.0, -5.0 / 15.0, -7.0 / 15.0, -9.0 / 15.0, -11.0 / 15.0, -13.0 / 15.0, -15.0 / 15.0, -15.0 / 15.0, -13.0 / 15.0, -11.0 / 15.0, -9.0 / 15.0, -7.0 / 15.0, -5.0 / 15.0, -3.0 / 15.0, -1.0 / 15.0]) },
         { name: "square", volume: 0.5, samples: centerWave([1.0, -1.0]) },
-        { name: "1/4 pulse", volume: 0.5, samples: centerWave([1.0, -1.0, -1.0, -1.0]) },
-        { name: "1/8 pulse", volume: 0.5, samples: centerWave([1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]) },
+        { name: "0.25 pulse", volume: 0.5, samples: centerWave([1.0, -1.0, -1.0, -1.0]) },
+        { name: "0.125 pulse", volume: 0.5, samples: centerWave([1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0]) },
         { name: "sawtooth", volume: 0.65, samples: centerWave([1.0 / 31.0, 3.0 / 31.0, 5.0 / 31.0, 7.0 / 31.0, 9.0 / 31.0, 11.0 / 31.0, 13.0 / 31.0, 15.0 / 31.0, 17.0 / 31.0, 19.0 / 31.0, 21.0 / 31.0, 23.0 / 31.0, 25.0 / 31.0, 27.0 / 31.0, 29.0 / 31.0, 31.0 / 31.0, -31.0 / 31.0, -29.0 / 31.0, -27.0 / 31.0, -25.0 / 31.0, -23.0 / 31.0, -21.0 / 31.0, -19.0 / 31.0, -17.0 / 31.0, -15.0 / 31.0, -13.0 / 31.0, -11.0 / 31.0, -9.0 / 31.0, -7.0 / 31.0, -5.0 / 31.0, -3.0 / 31.0, -1.0 / 31.0]) },
         { name: "double saw", volume: 0.5, samples: centerWave([0.0, -0.2, -0.4, -0.6, -0.8, -1.0, 1.0, -0.8, -0.6, -0.4, -0.2, 1.0, 0.8, 0.6, 0.4, 0.2]) },
         { name: "double pulse", volume: 0.4, samples: centerWave([1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0]) },
@@ -126,6 +129,9 @@ var beepbox = (function (exports) {
         { name: "octave", spread: 6.0, offset: 6.0, volume: 0.8, sign: 1.0 },
         { name: "bowed", spread: 0.02, offset: 0.0, volume: 1.0, sign: -1.0 },
         { name: "piano", spread: 0.01, offset: 0.0, volume: 1.0, sign: 0.7 },
+	{name: "50's guitar",voices: 5, spread: 2.34, offset: 1.1, expression: 0.8, sign: 0.89},
+        {name: "this sounds so bad", voices: 2, spread: -5, offset: -0.5, expression: 1.0, sign: 5.0},
+	{name: "fourths", voices: 2, spread: 4, offset: 4, expression: 0.95, sign: 1.0},
     ]);
     Config.effectsNames = ["none", "reverb", "chorus", "chorus & reverb"];
     Config.volumeRange = 8;
@@ -168,11 +174,23 @@ var beepbox = (function (exports) {
         { name: "6×", mult: 6.0, hzOffset: 0.0, amplitudeSign: 1.0 },
         { name: "7×", mult: 7.0, hzOffset: 0.0, amplitudeSign: 1.0 },
         { name: "8×", mult: 8.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "9×", mult: 9.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "11×", mult: 11.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "13×", mult: 13.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "16×", mult: 16.0, hzOffset: 0.0, amplitudeSign: 1.0 },
-        { name: "20×", mult: 20.0, hzOffset: 0.0, amplitudeSign: 1.0 },
+        {name:  "9×", mult:  9.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "10×", mult: 10.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "11×", mult: 11.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "12×", mult: 12.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "13×", mult: 13.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "14×", mult: 14.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "15×", mult: 15.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "16×", mult: 16.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "20×", mult: 20.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "30×", mult: 30.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "35×", mult: 35.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "45×", mult: 45.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "50×", mult: 50.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "100×", mult: 100.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "1000×", mult: 1000.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "10000×", mult: 10000.0, hzOffset: 0.0, amplitudeSign: 1.0},
+	{name: "97104×", mult: 97104.0, hzOffset: 0.0, amplitudeSign: 1.0},
     ]);
     Config.envelopes = toNameMap([
         { name: "custom", type: 0, speed: 0.0 },
@@ -230,9 +248,9 @@ var beepbox = (function (exports) {
     Config.harmonicsWavelength = 1 << 11;
     Config.pulseWidthRange = 8;
     Config.pitchChannelCountMin = 1;
-    Config.pitchChannelCountMax = 6;
+    Config.pitchChannelCountMax = 50;
     Config.noiseChannelCountMin = 0;
-    Config.noiseChannelCountMax = 3;
+    Config.noiseChannelCountMax = 50;
     Config.noiseInterval = 6;
     Config.pitchesPerOctave = 12;
     Config.drumCount = 12;
@@ -397,8 +415,8 @@ var beepbox = (function (exports) {
             return null;
         }
     }
-    EditorConfig.version = "3.0.13";
-    EditorConfig.versionDisplayName = "BeepBox " + EditorConfig.version;
+    EditorConfig.version = "3.0.13-FIVE";
+    EditorConfig.versionDisplayName = "5Box " + EditorConfig.version;
     EditorConfig.presetCategories = toNameMap([
         { name: "Custom Instruments", presets: toNameMap([
                 { name: "chip wave", customType: 0 },
