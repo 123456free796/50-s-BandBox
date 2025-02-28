@@ -51,10 +51,12 @@ var beepbox = (function (exports) {
         { name: "A", isWhiteKey: true, basePitch: 21 },
         { name: "A♯", isWhiteKey: false, basePitch: 22 },
         { name: "B", isWhiteKey: true, basePitch: 23 },
+	{ name: "B♯", isWhiteKey: false, basePitch: 24 },
+	{ name: "C1", isWhiteKey: true, basePitch: 25 },
     ]);
     Config.blackKeyNameParents = [-1, 1, -1, 1, -1, 1, -1, -1, 1, -1, 1, -1];
-    Config.tempoMin = 30;
-    Config.tempoMax = 300;
+    Config.tempoMin = 1;
+    Config.tempoMax = 500;
     Config.reverbRange = 4;
     Config.beatsPerBarMin = 3;
     Config.beatsPerBarMax = 16;
