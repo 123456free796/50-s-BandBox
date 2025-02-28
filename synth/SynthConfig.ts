@@ -278,6 +278,8 @@ export class Config {
 		{name: "÷8 (almost hard)",            stepsPerBeat: 8, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
 		{name: "÷24 (hard)",      stepsPerBeat:24, ticksPerArpeggio: 3, arpeggioPatterns: [[0], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null},
 		{name: "÷50 (expert)",      stepsPerBeat:50, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
+		{name: "÷100 (expert^2)",      stepsPerBeat:100, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
+		{name: "÷97104 (expert^200x9+7104)",      stepsPerBeat:97104, ticksPerArpeggio: 3, arpeggioPatterns: [[1], [0, 1],       [0, 1, 2, 1]], roundUpThresholds: null}
 	]);
 	
 	public static readonly instrumentTypeNames: ReadonlyArray<string> = ["chip", "FM", "noise", "spectrum", "drumset", "harmonics", "PWM", "Picked String", "supersaw"]; // See InstrumentType enum above.
@@ -356,7 +358,7 @@ export class Config {
 		{name: "octave",     voices: 2, spread: 6.0,  offset: 6.0, expression: 0.8, sign: 1.0},
 		{name: "bowed",      voices: 2, spread: 0.02, offset: 0.0, expression: 1.0, sign:-1.0},
 		{name: "piano",      voices: 2, spread: 0.01, offset: 0.0, expression: 1.0, sign: 0.7},
-                {name: "50's guitar",voices: 5, spread: 2.34, offset: 1.1, expression: 0.8, sign: 0.89},
+                   {name: "50's guitar",voices: 5, spread: 2.34, offset: 1.1, expression: 0.8, sign: 0.89},
 		{name: "this sounds so bad", voices: 2, spread: -5, offset: -0.5, expression: 1.0, sign: 5.0},
 		{name: "fourths",      voices: 2, spread: 4, offset: 4, expression: 0.95, sign: 1.0},
 
