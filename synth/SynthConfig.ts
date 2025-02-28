@@ -248,8 +248,8 @@ export class Config {
 		{name: "B",  isWhiteKey:  true, basePitch: 23},
 	]);
 	public static readonly blackKeyNameParents: ReadonlyArray<number> = [-1, 1, -1, 1, -1, 1, -1, -1, 1, -1, 1, -1];
-	public static readonly tempoMin: number = 30;
-	public static readonly tempoMax: number = 300;
+	public static readonly tempoMin: number = 1;
+	public static readonly tempoMax: number = 500;
 	public static readonly echoDelayRange: number = 24;
 	public static readonly echoDelayStepTicks: number = 4;
 	public static readonly echoSustainRange: number = 8;
@@ -355,6 +355,7 @@ export class Config {
 		{name: "piano",      voices: 2, spread: 0.01, offset: 0.0, expression: 1.0, sign: 0.7},
                 {name: "50's guitar",voices: 5, spread: 2.34, offset: 1.1, expression: 0.8, sign: 0.89},
 		{name: "this sounds so bad", voices: 2, spread: -5, offset: -0.5, expression: 1.0, sign: 5.0},
+		{name: "fourths",      voices: 2, spread: 4, offset: 4, expression: 0.95, sign: 1.0},
 
 	]);
 	public static readonly effectNames: ReadonlyArray<string> = ["reverb", "chorus", "panning", "distortion", "bitcrusher", "note filter", "echo", "pitch shift", "detune", "vibrato", "transition type", "chord type"];
